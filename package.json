@@ -1,0 +1,24 @@
+{
+  "name": "WordConstructor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SaraNP-33/WordConstructor.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SaraNP-33/WordConstructor/issues"
+  },
+  "homepage": "https://github.com/SaraNP-33/WordConstructor#readme",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "inquirer": "^7.2.0"
+  }
+}
