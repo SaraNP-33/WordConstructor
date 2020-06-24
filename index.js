@@ -45,11 +45,12 @@ function startGame(){
     inquirer
     .prompt([
         {
-        name:"start game",
+        name:"gameStart",
         type:"confirm",
         message:"Are you ready to test your animal knowledge?".blue
         }
     ]).then(function(answer){
+        if(answer.gameStart){
         remainingGuesses=9;
         lettersGuessed=[];
         console.log("Guess the Animal!".green)
@@ -70,6 +71,10 @@ function startGame(){
         } else{
             console.log("You know your Animals!!".yellow,"There are no more Animals to guess".red)
         }
+    } else{
+        console.log("No Problem! Come back Soon!".brightGreen);
+        
+    }
     })
 
     //function to allow user to guess a word
@@ -87,8 +92,8 @@ function startGame(){
 
             //tell the user if a letter has been already used
             if(lettersGuessed.includes(userGuess)){
-                console.log("You already guessed the letter", userGuess.toUpperCase().bgYellow,". Try another!");
-                userGuess();
+                console.log("You already guessed the letter", colors.yellow(userGuess.toUpperCase()),". Try another!");
+                userHandler();
             } else{
                 //add the letter the user guessed to the array
                 lettersGuessed.push(userGuess);
@@ -113,6 +118,7 @@ function startGame(){
                 //if the user wins
                 if(!show.includes("_")){
                     console.log("Woohoo! You won!".green);
+                    keepPlaying();
                 }
                 else if(remainingGuesses>0){
                     userHandler();
@@ -145,6 +151,20 @@ function startGame(){
        })
    }
 
+}
+
+function keepPlaying(){
+    inquirer.prompt([{
+        name:"keepGoing",
+        type:"confirm",
+        message:"Great job! Would you like to do another?".green
+    }]).then(function(answer){
+        if(answer.keepGoing){
+            startGame();
+        }else{
+            console.log("It has been real!".brightBlue, "Thanks for playing!".brightRed, "See you soon!".brightWhite);
+        }
+    })
 }
 
 startGame();
