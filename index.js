@@ -1,6 +1,6 @@
 var inquirer =require("inquirer");
 var colors =require("colors");
-var word =require("./Words.js");
+var Word =require("./Words.js");
 
 var randomWord;
 var remainingGuesses= 9;
@@ -66,7 +66,7 @@ function startGame(){
             
             // underscores for user to know how many letters
             console.log(randomWord.display());
-            userGuess();
+            userHandler();
         } else{
             console.log("You know your Animals!!".yellow,"There are no more Animals to guess".red)
         }
@@ -74,7 +74,7 @@ function startGame(){
 
     //function to allow user to guess a word
 
-    function userGuess(){
+    function userHandler(){
         inquirer
         .prompt([{
             name:"userGuess",
@@ -86,7 +86,7 @@ function startGame(){
             var userGuess = answer.userGuess.toUpperCase();
 
             //tell the user if a letter has been already used
-            if(lettersGuessed.includes(userInput)){
+            if(lettersGuessed.includes(userGuess)){
                 console.log("You already guessed the letter", userGuess.toUpperCase().bgYellow,". Try another!");
                 userGuess();
             } else{
@@ -105,21 +105,21 @@ function startGame(){
                     remainingGuesses--;
                 
                 //keep track of the number of guesses left
-                console.log("Wrong Letter".bgRed,"you have", remainingGuesses.bgYellow, "guesses left");
+                console.log("Wrong Letter".red,"you have", remainingGuesses, "guesses left");
                 
                 }else{
-                    console.log("You Got It!".bgGreen);
+                    console.log("You Got It!".green);
                 }
                 //if the user wins
                 if(!show.includes("_")){
-                    console.log("Woohoo! You won!".bgGreen);
+                    console.log("Woohoo! You won!".green);
                 }
                 else if(remainingGuesses>0){
-                    userGuess();
+                    userHandler();
                 }
                 else{
                     //user lost
-                    console.log("Boo...you lost! Try again!".bgCyan);
+                    console.log("Boo...you lost! Try again!".cyan);
                     restart();
                 }
             }
